@@ -1,7 +1,19 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% for post in posts %}
+<div class="row">
+
+
+    <div class="col-md-3 col-sm-3 col-md-push-8">
+            <blockquote>
+              {% for post in posts %}
+                <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a><br>
+              {% endfor %}
+            </blockquote>
+      </div>
+
+    <div class="col-md-8 col-xs-12 col-md-pull-3">
+          {% for post in posts %}
         <div class="post">
             <div class="date">
                 {{ post.published_date }}
@@ -9,5 +21,7 @@
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
+    </div>
+</div>
     {% endfor %}
 {% endblock %}
